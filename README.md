@@ -15,10 +15,10 @@ Misi **Artemis II** membawa empat astronaut mengelilingi Bulan dalam perjalanan 
 Artemis II adalah misi berawak pertama dalam program Artemis — generasi penerus Apollo. Berbeda dengan Artemis I yang tanpa awak, misi ini membawa empat astronaut dalam lintasan *free-return trajectory*: sebuah jalur yang dirancang sedemikian rupa sehingga jika semua sistem gagal, gravitasi Bulan dan Bumi akan secara alami mengembalikan kapsul ke Bumi tanpa perlu satu pun manuver tambahan.
 
 **Kru:**
-- 🧑‍✈️ **Reid Wiseman** — Commander (NASA)
-- 🧑‍✈️ **Victor Glover** — Pilot (NASA)
-- 👩‍🚀 **Christina Koch** — Mission Specialist (NASA)
-- 🧑‍🚀 **Jeremy Hansen** — Mission Specialist (CSA, Kanada)
+- **Reid Wiseman** — Commander (NASA)
+- **Victor Glover** — Pilot (NASA)
+- **Christina Koch** — Mission Specialist (NASA)
+- **Jeremy Hansen** — Mission Specialist (CSA, Kanada)
 
 **Timeline singkat:**
 
