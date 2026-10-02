@@ -1,76 +1,78 @@
-# Artemis II — Trajectory Analysis
+# Artemis II: Trajectory Analysis
 
-> *"We choose to go to the Moon not because it is easy, but because it is hard."* — John F. Kennedy
+**English** | [Bahasa Indonesia](README.id.md)
 
-Pada **1 April 2026**, untuk pertama kalinya sejak program Apollo, manusia kembali menuju Bulan. Bukan untuk mendarat — tapi untuk membuktikan bahwa mereka siap.
+> *"We choose to go to the Moon not because it is easy, but because it is hard."* (John F. Kennedy)
 
-Misi **Artemis II** membawa empat astronaut mengelilingi Bulan dalam perjalanan 9 hari menggunakan kapsul Orion yang mereka beri nama *"Integrity"*. Repo ini merekonstruksi perjalanan itu secara matematis, menggunakan data ephemeris nyata dari **NASA JPL Horizons** untuk memvisualisasikan setiap kilometer yang ditempuh.
+On April 1, 2026, people headed for the Moon again for the first time since Apollo. They weren't going to land. The point of this trip was to show that the spacecraft and crew were ready for the next mission, the one that will.
+
+Artemis II carried four astronauts around the Moon and back in about nine days, aboard an Orion capsule the crew named *"Integrity"*. I wanted to see that trip for myself, so this repo rebuilds the path Orion flew using real ephemeris data from **NASA JPL Horizons** and turns it into plots.
 
 ![Trajectory 2D](trajectory_2d.png)
 
 ---
 
-## Tentang Misi
+## About the mission
 
-Artemis II adalah misi berawak pertama dalam program Artemis — generasi penerus Apollo. Berbeda dengan Artemis I yang tanpa awak, misi ini membawa empat astronaut dalam lintasan *free-return trajectory*: sebuah jalur yang dirancang sedemikian rupa sehingga jika semua sistem gagal, gravitasi Bulan dan Bumi akan secara alami mengembalikan kapsul ke Bumi tanpa perlu satu pun manuver tambahan.
+Artemis II is the first crewed flight of the Artemis program, NASA's follow-up to Apollo. Artemis I in 2022 flew with nobody on board. This time there were four people, flying a *free-return trajectory*. That path is shaped so that if every system failed after leaving Earth orbit, the gravity of the Moon and Earth would still bring the capsule home without a single extra engine burn.
 
-**Kru:**
-- **Reid Wiseman** — Commander (NASA)
-- **Victor Glover** — Pilot (NASA)
-- **Christina Koch** — Mission Specialist (NASA)
-- **Jeremy Hansen** — Mission Specialist (CSA, Kanada)
+**Crew:**
+- **Reid Wiseman**, Commander (NASA)
+- **Victor Glover**, Pilot (NASA)
+- **Christina Koch**, Mission Specialist (NASA)
+- **Jeremy Hansen**, Mission Specialist (CSA, Canada)
 
-**Timeline singkat:**
+**Quick timeline:**
 
-| Hari | Kejadian |
-|------|----------|
-| 1 | Launch dari KSC, deploy solar array, manuver orbit awal |
-| 2 | **Translunar Injection (TLI)** — burn 5m55s, delta-v +388 m/s, arah ke Bulan |
-| 5–6 | Masuk Sphere of Influence Bulan, closest approach **8,282 km** dari permukaan |
-| 6 | Jarak maks dari Bumi: **413,146 km** |
-| 7–9 | Return trajectory, tiga correction burn kecil |
-| 10 | Entry interface 122 km, splashdown Samudra Pasifik |
+| Day | What happened |
+|-----|---------------|
+| 1 | Launch from Kennedy Space Center, solar arrays deployed, first orbit adjustments |
+| 2 | **Translunar Injection (TLI)**: a 5 min 55 s burn adding 388 m/s, pointing Orion at the Moon |
+| 5–6 | Enters the Moon's sphere of influence, closest approach **8,282 km** above the surface |
+| 6 | Farthest point from Earth: **413,146 km** |
+| 7–9 | Heading home, with three small correction burns |
+| 10 | Atmospheric entry at 122 km, splashdown in the Pacific Ocean |
 
 ---
 
-## Visualisasi
+## What the plots show
 
 ![Distance Profile](distance_profile.png)
 
-Grafik di atas menunjukkan dua kurva yang saling berkebalikan: saat Orion menjauhi Bumi, ia mendekati Bulan. Puncaknya terjadi pada Hari ke-6 — titik di mana Orion berada sejauh 413 ribu km dari Bumi, namun hanya 8 ribu km dari permukaan Bulan.
+The two curves mirror each other. As Orion gets farther from Earth, it gets closer to the Moon. Both peak on day 6, when Orion was 413 thousand km from Earth and only about 8 thousand km above the lunar surface.
 
 ![Speed Profile](speed_profile.png)
 
-Profil kecepatan mencerminkan hukum gravitasi: Orion melambat saat mendaki "bukit gravitasi" Bumi, lalu mempercepat saat tertarik Bulan, kemudian mempercepat lagi saat jatuh kembali ke Bumi. Setiap garis vertikal adalah manuver burn yang mengubah jalur.
+The speed plot is gravity at work. Orion slows down as it climbs away from Earth, speeds up as the Moon pulls it in, and speeds up again on the fall back home. Each vertical line marks an engine burn that changed the path.
 
 ![Trajectory 3D](trajectory_3d.png)
 
 ---
 
-## Dataset
+## Data
 
-Data diambil langsung dari NASA JPL Horizons System — sistem efemerida resmi NASA yang digunakan para ilmuwan dan insinyur misi.
+Everything comes straight from the NASA JPL Horizons System, the same ephemeris service NASA scientists and mission engineers use.
 
-| File | Isi |
-|------|-----|
-| `artemis_ephemeris.txt` | Posisi & kecepatan Orion "Integrity" (body ID `-1024`), diperbarui 10 Apr 2026 |
-| `moon_ephemeris.txt` | Posisi Bulan (body ID `301`, DE441), step 5 menit |
+| File | Contents |
+|------|----------|
+| `artemis_ephemeris.txt` | Position and velocity of Orion "Integrity" (body ID `-1024`), updated April 10, 2026 |
+| `moon_ephemeris.txt` | Position of the Moon (body ID `301`, DE441), 5-minute steps |
 
-Format data: setiap baris antara `$$SOE` dan `$$EOE` berisi Julian Date, timestamp, posisi XYZ (km), dan kecepatan VxVyVz (km/s) dalam frame Ekliptika J2000.0 pusat Bumi.
+Every line between `$$SOE` and `$$EOE` holds a Julian Date, a timestamp, an XYZ position (km), and a VxVyVz velocity (km/s), in the Earth-centered Ecliptic J2000.0 frame.
 
 ---
 
-## Cara Menjalankan
+## How to run it
 
 ```bash
 pip install -r requirements.txt
 jupyter notebook artemis_ii_analysis.ipynb
 ```
 
-Notebook sudah dieksekusi dengan output tersimpan — bisa langsung dilihat tanpa perlu menjalankan ulang.
+The notebook is saved with its outputs, so you can open it and read through without running anything.
 
 ---
 
-## Sumber Data
+## Source
 
-NASA JPL Horizons System — [ssd.jpl.nasa.gov](https://ssd.jpl.nasa.gov/horizons/)
+NASA JPL Horizons System: [ssd.jpl.nasa.gov](https://ssd.jpl.nasa.gov/horizons/)
